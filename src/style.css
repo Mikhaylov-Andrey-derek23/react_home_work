@@ -1,0 +1,238 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #e5e5e5;
+}
+
+.wrapper {
+  max-width: 1200px;
+  margin: 40px auto;
+  background-color: #ffffff;
+}
+
+.Navigation {
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.Navigation .nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Navigation .nav .logo {
+  width: 45px;
+  height: 45px;
+  text-transform: uppercase;
+  background-color: black;
+  color: white;
+  text-align: center;
+  line-height: 45px;
+  margin-right: 30px;
+}
+
+.Navigation .nav a {
+  color: black;
+  text-decoration: none;
+  margin-left: 30px;
+}
+
+.Navigation .basket_component {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Navigation .basket_component .user {
+  position: relative;
+}
+
+.Navigation .basket_component .user:before {
+  content: "";
+  position: absolute;
+  background-image: url("img/person.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 90% 105%;
+  width: 15px;
+  height: 15px;
+  left: -20px;
+}
+
+.Navigation .basket_component .user a {
+  color: #ffa200;
+  text-transform: lowercase;
+  text-decoration: none;
+}
+
+.Navigation .basket_component .basket {
+  margin-left: 40px;
+  position: relative;
+  color: black;
+  text-decoration: none;
+}
+
+.Navigation .basket_component .basket:before {
+  content: "";
+  position: absolute;
+  background-image: url("img/basket.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 90% 105%;
+  width: 15px;
+  height: 15px;
+  left: -20px;
+}
+
+.goods_card {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.goods_card .tag {
+  margin-top: 30px;
+  margin-bottom: 75px;
+}
+
+.goods_card .tag a {
+  color: #606060;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.goods_card .tag span {
+  margin: 0 4px;
+}
+
+.goods_card h1 {
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.goods_card p {
+  text-align: center;
+  margin-bottom: 75px;
+}
+
+.goods_card .Selector {
+  margin-bottom: 65px;
+}
+
+.goods_card .Selector form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.goods_card .Selector form select {
+  width: 180px;
+  margin-left: 25px;
+  border: none;
+  border-bottom: 1px solid #606060;
+}
+
+.goods_card .cards_good {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.goods_card .cards_good .card_good {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 260px;
+  margin: 20px 0;
+  margin-left: 20px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+  color: black;
+}
+
+.goods_card .cards_good .card_good a {
+  color: black;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 20px;
+  margin: 20px 0;
+}
+
+.paginator {
+  width: 12%;
+  margin: 30px auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-bottom: 30px;
+}
+
+.paginator .activ {
+  padding: 12px;
+  color: black;
+  text-decoration: none;
+  border: 1px black solid;
+}
+
+.paginator .next {
+  padding: 13px;
+  color: white;
+  text-decoration: none;
+  background-color: black;
+  -webkit-transform: all 3000ms;
+          transform: all 3000ms;
+}
+
+.paginator .next:hover {
+  padding: 12px;
+  color: black;
+  text-decoration: none;
+  background-color: white;
+  border: 1px black solid;
+}
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,181 @@
+*{
+    margin: 0;
+    padding: 0;
+
+}
+body{
+    min-height: 100vh;
+    background-color: #e5e5e5;
+}
+.wrapper{
+    max-width: 1200px;
+    margin: 40px auto;
+    background-color: #ffffff;
+}
+.Navigation{
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e5e5e5;
+    .nav{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .logo{
+            width: 45px;
+            height: 45px;
+            text-transform: uppercase;
+            background-color: black;
+            color: white;
+            text-align: center;
+            line-height: 45px;
+            margin-right: 30px;
+        }
+        a{
+            color: black;
+            text-decoration: none;
+            margin-left: 30px; 
+        }
+    }
+
+    .basket_component{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .user{
+            position: relative;
+            &:before{
+                content:  "";
+                position: absolute;
+                background-image: url('img/person.svg');
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: 90% 105%;
+                width: 15px;
+                height: 15px;
+                left: -20px;
+            }
+            a{
+                color: #ffa200;
+                text-transform: lowercase;
+                text-decoration: none;
+            }
+        }
+
+        .basket{
+            margin-left: 40px;
+            position: relative;
+            color: black;
+            text-decoration: none;
+            
+            &:before{
+                content:  "";
+                position: absolute;
+                background-image: url('img/basket.svg');
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: 90% 105%;
+                width: 15px;
+                height: 15px;
+                left: -20px;
+            }
+
+            
+        }
+    }
+}
+.goods_card{
+    width: 90%;
+    margin: 0 auto;
+    .tag{
+        margin-top: 30px;
+        margin-bottom: 75px;
+        a{
+            color: #606060;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+        span{
+            margin: 0 4px; 
+        }
+    }
+    h1{
+        text-align: center;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+    }
+    p{
+        text-align: center;
+        margin-bottom: 75px;
+    }
+    .Selector{
+        margin-bottom: 65px;
+        form{
+            display: flex;
+            justify-content: center;
+            select{
+                width: 180px;
+                margin-left: 25px;
+                border: none;
+                border-bottom: 1px solid #606060
+            }
+        }
+        
+    }
+    .cards_good{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        .card_good{
+            display: flex;
+            width: 260px;
+            margin: 20px 0;
+            margin-left: 20px;
+            flex-direction: column;
+            text-align: center;
+            color: black;
+            
+            a{
+                color: black;
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 20px;
+                margin: 20px 0;
+            }
+        }
+    }
+}
+.paginator{
+    width: 12%;
+    margin: 30px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 30px;
+    .activ{
+        padding: 12px;
+        color: black;
+        text-decoration: none;
+        border: 1px black solid;
+    }
+    .next{
+        padding: 13px;
+        color: white;
+        text-decoration: none;
+        background-color: black;
+        transform: all 3000ms;
+        &:hover{
+            padding: 12px;
+            color: black;
+            text-decoration: none;
+            background-color: white;
+            border: 1px black solid;
+        }
+    } 
+}
