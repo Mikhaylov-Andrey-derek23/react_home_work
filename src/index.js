@@ -162,4 +162,3 @@ class Wrapper extends React.Component{
 
 
 ReactDOM.render(<Wrapper/>, document.getElementById('root'));
-git remote add origin https://github.com/Mikhaylov-Andrey-derek23/react_home_work_22.05.git
