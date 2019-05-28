@@ -16,7 +16,7 @@ class Cours extends React.Component{
             <h2>{this.props.courseName}</h2>
             <p><Price price={this.props.coursePrice}/></p>
             <img src={this.props.img}/>
-            <div>Нужен {this.props.cursplus}</div>
+            <div>{this.props.cursplus}</div>
             </a>
             
         )
@@ -175,7 +175,8 @@ class Nordic extends React.Component{
                 val.nameCours = [];
                 this.state.cours.forEach((val2)=>{
                     if(val.reuired == val2.id){
-                        val.nameCours.push(val)
+                        console.log(val2.name)
+                        val.nameCours.push("Нужен курс: "+val2.name+"a")
                     }
                 })
             }
@@ -201,9 +202,7 @@ class Nordic extends React.Component{
                <div>
                     {
                         this.state.cours.map((item, key)=>
-                           item.activ ? <Cours link={item.id} courseName={item.name} coursePrice={item.price} img={item.img} 
-
-                           /> : ''
+                           item.activ ? <Cours link={item.id} courseName={item.name} coursePrice={item.price} img={item.img} cursplus={item.nameCours}/> : ''
                         )
                     }
                </div>
