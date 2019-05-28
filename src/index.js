@@ -1,164 +1,263 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './style.css'
 
-const items = [
-    [
-        'jacket_blue', 
-        'https://littlegentrys.ru/image/cache/data/products/2016/03/kurtka_finn_flare_00004768_1-800x800.jpg',
-        'Куртка синия',
-        5400
-    ],
-    [
-        'leather_jacket',
-        'http://motolife78.ru/d/revit-erin-black.jpg',
-        'Кожанная куртка',
-        22500
-    ],
-    [
-        'jacket_pockets',
-        'https://im0-tub-ru.yandex.net/i?id=d92ca965dfbfe179ce0bfb7a8d3391dd&n=13',
-        'Куртка  c карманами',
-        9200
-    ],
-    [
-        'casual_jacket',
-        'http://k-culture.co.uk/images/com_hikashop/upload/mj004.jpg',
-        'Куртка casual ',
-        8800
-    ],
-    [
-        'stylish leather jackett',
-        'https://ae01.alicdn.com/kf/HTB1HItKXLfsK1RjSszbq6AqBXXaq/Men-s-Leather-Jacket-Motorcycle-Biker-PU-Faux-Leather-Coat-Slim-Fit-Winter-Thick-Warm-Parka.jpg',
-        'Стильная кожаная куртка',
-        128000
-    ],
-    [
-        'sneakers_gray',
-        'https://static.dochkisinochki.ru/upload/img_loader/40/28/84/GL000479531mGS6545_001.jpg',
-        'Кеды серые',
-        2900
-    ],
-    [
-        'sneakers_casul',
-        'https://i.allo.ua/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/a/1/a11-1_29.jpg',
-        'Кеды Casul',
-        5900
-    ]
+class Price extends React.Component{
+    render(){
+        return(
+            <button>{this.props.price}</button>
+        )
+    }
+}
+
+class Cours extends React.Component{
+    render(){
+        return(
+            <a  href={this.props.link} className='course-item'>
+            <h2>{this.props.courseName}</h2>
+            <p><Price price={this.props.coursePrice}/></p>
+            <img src={this.props.img}/>
+            <div>Нужен {this.props.cursplus}</div>
+            </a>
+            
+        )
+        
+    }
+}
+class Counter extends React.Component{
+    render(){
+        return (
+            <div>{this.props.num}</div>
+        )
+    }
+}
+
+class Nordic extends React.Component{
+    constructor(props){
+        super(props)
+        this.state= {
+            num : 0, 
+            // cours : [
+            //     {
+            //         name : 'React',
+            //         price : 19000,
+            //         activ: true
+            //     },
+            //     {
+            //         name: 'Java',
+            //         price: 17900, 
+            //         activ: false 
+            //     },
+            //     {
+            //         name: 'Python',
+            //         price: 30000,
+            //         activ: true 
+
+            //     }
+            // ]
+            cours : [],
+            isload: false 
+        }
+    }
+    componentDidMount(){
+        // setTimeout(()=>{
+        //     this.setState({
+        //         cours:[
+        //             {
+        //                         name : 'React',
+        //                         price : 19000,
+        //                         activ: true
+        //                     },
+        //                     {
+        //                         name: 'Java',
+        //                         price: 17900, 
+        //                         activ: false 
+        //                     },
+        //                     {
+        //                         name: 'Python',
+        //                         price: 30000,
+        //                         activ: true 
+            
+        //                     }
+        //         ], isload:true
+        //     })
+        // }, 2000)
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET',' /date.json');
+        xhr.send();
+        
+        xhr.addEventListener('load', ()=>{
+            const respon = JSON.parse(xhr.responseText);
+            console.log('parse')
+            this.setState({
+                cours : respon.data,
+                isload : true
+            })
+           
+
+        } )
+        
+        
+    }
+    renderCours2(){
+        this.state.cours.forEach((elem)=>{
+            return(
+                console.log(elem.name, elem.price)
+            )
+        })
+    }
+
+    renderCours(name, price){
+        return (
+            <Cours courseName={name} coursePrice={price}/>
+
+        )
+    }
+
+    salesPrice(){
+        let price = this.state.cours;
+        price.forEach((val)=>{
+
+            val.price = val.price - val.price*0.1;
+        })
+        this.setState({cours : price})
+    }
     
-];
+    Invers(){
+        let price = this.state.cours;
+        price.forEach((val)=>{
 
-class Navigation extends React.Component{
-    render(){
-        return(
-            <div className="Navigation">
-                <div className="nav">
-                    <div className="logo">sh</div>
-                    <a href="#">Женщинам</a>
-                    <a href="#">Мужчинам</a> 
-                    <a href="#">Детям</a> 
-                    <a href="#">Новинки</a>  
-                    <a href="#">О нас</a>
-                </div> 
-                <Basket name="Слава" count="5"/>
-            </div>
-        )
+            if (val.activ == true) {
+                val.activ = false
+            }else{
+                val.activ = true;
+            }
+            
+        })
+        this.setState({cours : price})
     }
-}  
 
-class Basket extends React.Component{
-    render(){
-        return(
-            <div className="basket_component">
-                <div className="user">Привет, {this.props.name} (<a href="#">Выйти</a>)</div>
-                <a className="basket" href="#">Корзина ({this.props.count})</a>
-            </div>
-        )
+
+    countChange(){
+    
+            this.setState({num: this.state.num + 1});
+            let arCourse = this.state.cours;
+            arCourse.push({
+                name: "C++",
+                price: 50000,
+                activ: false
+            })
+            this.setState({cours : arCourse})
+            console.log(arCourse)
+            //this.state.cours.push({name: "C++", price : 50000})
+    
     }
-}
 
-class Selector extends React.Component{
+    countChange2(){
+    
+        this.setState({num: this.state.num -1});
 
-  
-
-    render(){
-        return(
-            <div className="Selector">
-                <form>
-                    <select name="Categories">
-                        <option value="basic">Категории</option>
-                        <option value="Jacket">Куртки</option>
-                        <option value="Sneake">Кеды</option>
-                        <option value="Jeans">Джинсы</option>
-                    </select>
-                    <select name="Size">
-                        <option value="basic">Размер</option>
-                        <option value="big">Больщой</option>
-                        <option valur="medium">Средий</option>
-                        <option value="small">Малый</option>
-                    </select>
-                    <select name="Price" >
-                        <option value="basic">Стоимость</option>
-                        <option value="0-1000">0-1000 руб.</option>
-                        <option value="1000-3000">1000-3000 руб.</option>
-                        <option value="3000-6000">3000-6000 руб.</option>
-                        <option value="6000-9000">6000-9000 руб.</option>
-                    </select>
-                </form>
-                
-            </div>
-        )
     }
-}
-
-class Goods_card extends React.Component{
+    handlerClick(){
+        console.log('click');
+    }
+    color(){
+        setTimeout(()=>{
+            document.querySelector("body").style.backgroundColor = 'red';
+        }, 300)
+        
+    }
     render(){
-        return(
-            <div className="goods_card">
-                <div className="tag">
-                    <a href="#">Главная </a><span>/</span><a href="#">{this.props.tagName}</a>
+
+        const a1 = this.state.cours;
+        a1.forEach((val)=>{
+            if (val.reuired != null){
+                val.nameCours = [];
+                this.state.cours.forEach((val2)=>{
+                    if(val.reuired == val2.id){
+                        val.nameCours.push(val)
+                    }
+                })
+            }
+        })
+        console.log(a1)
+
+        return (
+            <div className='wrapper'>
+                <div className='nordic'><h1>{
+                    !this.state.isload ? 'Загрузка' : 'Загрузка завершина'
+                }</h1></div>
+                <button onClick={()=>{this.handlerClick()}}>Click me!</button>
+                <button onClick={()=>{this.color()}}>Click color</button>
+                <div className='course.box'>{this.renderCours('React', ' 200 руб.')}
+                <Cours courseName={'Веб разработка'} coursePrice={'100 руб.'}/>
                 </div>
-                <h1>{this.props.tagName}</h1>
-                <p>Все товары</p>
-                <Selector/>
-                <div className="cards_good">{items.map(item => <div className="card_good">
-                        <img src={item[1]} width="260" height="260" alt={item[2]}></img>
-                        <a href={item[0]}>{item[2]}</a>
-                        <p>{item[3]} руб.</p>
-                    </div>)}
-                </div>
+                <Counter num={this.state.num}/>
+               <button onClick = {()=>this.countChange()}>+ Click</button>
+               <button onClick = {()=>this.countChange2()}>- Click</button>
+               <button onClick = {()=>this.salesPrice()}>- Price -</button>
+               <button onClick = {()=>this.Invers()}>- Покажем что скрыто -</button>
+               <div>{this.renderCours2()}</div>
+               <div>
+                    {
+                        this.state.cours.map((item, key)=>
+                           item.activ ? <Cours link={item.id} courseName={item.name} coursePrice={item.price} img={item.img} 
+
+                           /> : ''
+                        )
+                    }
+               </div>
+
             </div>
         )
     }
 }
-
-class Paginator extends React.Component{
+class Credit extends React.Component{
     render(){
         return(
-            <div className="paginator">
-                <a href="1" className="activ">1</a>
-                <a href="2" className="next">2</a>
-                <a href="2" className="next">3</a>
-                <a href="2" className="next">4</a>
+            <div>
+                <div>{this.props.creditImg}</div>
+                <div>{this.props.creditNumber}</div>
+                <div>{this.props.creditData}</div>
+                <Balanas balans={this.props.creditB}/>
+            </div>
+        )
+    }
+}
+class Balanas extends React.Component{
+    render(){
+        return(
+            <div>{this.props.balans}</div>
+        )
+    }
+}
+class Depozit extends React.Component{
+    render(){
+        return(
+            <div>
+                <div>{this.props.depozitImg}</div>
+                <div>{this.props.depozitNumber}</div>
+                <div>{this.props.depozitData}</div>
+                <Balanas balans={this.props.depozitB}/>
             </div>
         )
     }
 }
 
-class Wrapper extends React.Component{
+class BankCard extends React.Component{
 
 
     render(){
         return(
-            <div className="wrapper">
-            <Navigation/>
-            <Goods_card tagName="Мужчинам"/>
-            <Paginator/>
+            <div className="Wrapper">
+            <Nordic/>
+            {/* <Credit creditImg={'Credit'} creditNumber={'1234'} creditData={'21.21'} creditB={-222}/>
+            <Depozit depozitImg={'Depozit'} depozitNumber={'4321'} depozitData={'21.21'} depozitB={5646}/>   */}
             </div>
         )
     }
 }
 
+ReactDOM.render(<Nordic/>, document.getElementById('root'));
 
 
-ReactDOM.render(<Wrapper/>, document.getElementById('root'));

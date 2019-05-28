@@ -1,0 +1,29 @@
+{
+    "data" :[
+        {
+            "id" : "1",
+            "name" : "Веб разработчик",
+            "price" : 17000,
+            "activ" : true,
+            "img" : "/img/jacket_blue.jpg",
+            "reuired" : null
+        },
+        {   
+            "id" : 2,
+            "name" : "React",
+            "price" : 23000,
+            "activ" : true,
+            "img" : "/img/jacket_blue.jpg",
+            "reuired" : 1
+        },
+        {   
+
+            "id" : 3,
+            "name" : "Java",
+            "price" : 19000,
+            "activ" : false,
+            "img" : "/img/jacket_blue.jpg",
+            "reuired" : 2
+        }
+    ]
+}
