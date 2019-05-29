@@ -1,0 +1,46 @@
+{
+    "data":[
+        {
+            "idName" : "jacket_blue", 
+            "url_img": "https://littlegentrys.ru/image/cache/data/products/2016/03/kurtka_finn_flare_00004768_1-800x800.jpg",
+            "name" : "Куртка синия",
+            "price": 5400
+        },
+        {
+            "idName" : "leather_jacket", 
+            "url_img": "http://motolife78.ru/d/revit-erin-black.jpg",
+            "name" : "Кожанная куртка",
+            "price": 22500
+        },
+        {
+            "idName" : "jacket_pockets", 
+            "url_img": "https://im0-tub-ru.yandex.net/i?id=d92ca965dfbfe179ce0bfb7a8d3391dd&n=13",
+            "name" : "Куртка  c карманами",
+            "price": 9200
+        },
+        {
+            "idName" : "casual_jacket", 
+            "url_img": "http://k-culture.co.uk/images/com_hikashop/upload/mj004.jpg",
+            "name" : "Куртка casual",
+            "price": 8800
+        },
+        {
+            "idName" : "stylish leather jackett", 
+            "url_img": "https://ae01.alicdn.com/kf/HTB1HItKXLfsK1RjSszbq6AqBXXaq/Men-s-Leather-Jacket-Motorcycle-Biker-PU-Faux-Leather-Coat-Slim-Fit-Winter-Thick-Warm-Parka.jpg",
+            "name" : "Стильная кожаная куртка",
+            "price": 120000
+        },
+        {
+            "idName" : "sneakers_gray", 
+            "url_img": "https://static.dochkisinochki.ru/upload/img_loader/40/28/84/GL000479531mGS6545_001.jpg",
+            "name" : "Кеды серые",
+            "price": 2900
+        },
+        {
+            "idName" : "sneakers_casul", 
+            "url_img": "https://i.allo.ua/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/a/1/a11-1_29.jpg",
+            "name" : "Куртка синия",
+            "price": 5900
+        }
+    ] 
+}

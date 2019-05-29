@@ -110,23 +110,66 @@ class Selector extends React.Component{
         )
     }
 }
+class CardGood extends React.Component{
+    render(){
+        return(
+            <div className="cardGood">
+                        <img src={this.props.img} width="260" height="260" alt={this.props.name}></img>
+                        <a href={this.props.nameId}>{this.props.name}</a>
+                        <p>{this.props.price} руб.</p>
+            </div>
+        )
+    }
+}
+class CardsGood extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            isload: false,
+            data: [] 
+        }
+    }
+
+    componentDidMount(){
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', '/data.json');
+        xhr.send();
+        xhr.addEventListener('load', ()=>{
+            console.log('load');
+            const respon = JSON.parse(xhr.responseText);
+            this.setState({
+                data : respon.data
+                
+            })
+            console.log(this.state)
+        })
+    }
+
+    render(){
+        return(
+            <div className="cardsGood">
+                {
+                    this.state.data.map((item, key) =>
+                   <CardGood img={item.url_img} name={item.name} price={item.price} nameId={item.idName}/>
+                 )
+                }
+            </div>
+        )
+    }
+}
+
 
 class Goods_card extends React.Component{
     render(){
         return(
-            <div className="goods_card">
+            <div className="goodsCard">
                 <div className="tag">
                     <a href="#">Главная </a><span>/</span><a href="#">{this.props.tagName}</a>
                 </div>
                 <h1>{this.props.tagName}</h1>
                 <p>Все товары</p>
                 <Selector/>
-                <div className="cards_good">{items.map(item => <div className="card_good">
-                        <img src={item[1]} width="260" height="260" alt={item[2]}></img>
-                        <a href={item[0]}>{item[2]}</a>
-                        <p>{item[3]} руб.</p>
-                    </div>)}
-                </div>
+                <CardsGood/>
             </div>
         )
     }

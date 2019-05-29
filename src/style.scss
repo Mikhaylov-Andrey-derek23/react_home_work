@@ -89,7 +89,7 @@ body{
         }
     }
 }
-.goods_card{
+.goodsCard{
     width: 90%;
     margin: 0 auto;
     .tag{
@@ -127,12 +127,12 @@ body{
         }
         
     }
-    .cards_good{
+    .cardsGood{
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
 
-        .card_good{
+        .cardGood{
             display: flex;
             width: 260px;
             margin: 20px 0;
@@ -140,6 +140,7 @@ body{
             flex-direction: column;
             text-align: center;
             color: black;
+            
             
             a{
                 color: black;
