@@ -2,51 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './style.css'
 
-const items = [
-    [
-        'jacket_blue', 
-        'https://littlegentrys.ru/image/cache/data/products/2016/03/kurtka_finn_flare_00004768_1-800x800.jpg',
-        'Куртка синия',
-        5400
-    ],
-    [
-        'leather_jacket',
-        'http://motolife78.ru/d/revit-erin-black.jpg',
-        'Кожанная куртка',
-        22500
-    ],
-    [
-        'jacket_pockets',
-        'https://im0-tub-ru.yandex.net/i?id=d92ca965dfbfe179ce0bfb7a8d3391dd&n=13',
-        'Куртка  c карманами',
-        9200
-    ],
-    [
-        'casual_jacket',
-        'http://k-culture.co.uk/images/com_hikashop/upload/mj004.jpg',
-        'Куртка casual ',
-        8800
-    ],
-    [
-        'stylish leather jackett',
-        'https://ae01.alicdn.com/kf/HTB1HItKXLfsK1RjSszbq6AqBXXaq/Men-s-Leather-Jacket-Motorcycle-Biker-PU-Faux-Leather-Coat-Slim-Fit-Winter-Thick-Warm-Parka.jpg',
-        'Стильная кожаная куртка',
-        128000
-    ],
-    [
-        'sneakers_gray',
-        'https://static.dochkisinochki.ru/upload/img_loader/40/28/84/GL000479531mGS6545_001.jpg',
-        'Кеды серые',
-        2900
-    ],
-    [
-        'sneakers_casul',
-        'https://i.allo.ua/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/a/1/a11-1_29.jpg',
-        'Кеды Casul',
-        5900
-    ]
-    
-];
+
 
 class Navigation extends React.Component{
     render(){
@@ -139,7 +95,7 @@ class CardsGood extends React.Component{
             const respon = JSON.parse(xhr.responseText);
             this.setState({
                 data : respon.data
-                
+
             })
             console.log(this.state)
         })
