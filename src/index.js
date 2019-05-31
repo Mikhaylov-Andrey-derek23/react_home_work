@@ -1,262 +1,77 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-class Price extends React.Component{
+class Team extends React.Component{
     render(){
-        return(
-            <button>{this.props.price}</button>
-        )
-    }
-}
 
-class Cours extends React.Component{
-    render(){
         return(
-            <a  href={this.props.link} className='course-item'>
-            <h2>{this.props.courseName}</h2>
-            <p><Price price={this.props.coursePrice}/></p>
-            <img src={this.props.img}/>
-            <div>{this.props.cursplus}</div>
-            </a>
-            
-        )
-        
-    }
-}
-class Counter extends React.Component{
-    render(){
-        return (
-            <div>{this.props.num}</div>
+            <div>
+                <ul>
+                    {
+                        this.props.name.map((val, key)=><li>{val.team} {val.counter}</li> )
+                    }
+                </ul>
+            </div>
         )
     }
 }
-
-class Nordic extends React.Component{
+class MyForm extends React.Component{
     constructor(props){
-        super(props)
-        this.state= {
-            num : 0, 
-            // cours : [
-            //     {
-            //         name : 'React',
-            //         price : 19000,
-            //         activ: true
-            //     },
-            //     {
-            //         name: 'Java',
-            //         price: 17900, 
-            //         activ: false 
-            //     },
-            //     {
-            //         name: 'Python',
-            //         price: 30000,
-            //         activ: true 
+        super(props);
+        this.state = {
+            team : '',
+            counter : '',
+            teamlist : []
 
-            //     }
-            // ]
-            cours : [],
-            isload: false 
         }
     }
-    componentDidMount(){
-        // setTimeout(()=>{
-        //     this.setState({
-        //         cours:[
-        //             {
-        //                         name : 'React',
-        //                         price : 19000,
-        //                         activ: true
-        //                     },
-        //                     {
-        //                         name: 'Java',
-        //                         price: 17900, 
-        //                         activ: false 
-        //                     },
-        //                     {
-        //                         name: 'Python',
-        //                         price: 30000,
-        //                         activ: true 
-            
-        //                     }
-        //         ], isload:true
-        //     })
-        // }, 2000)
-
-        const xhr = new XMLHttpRequest();
-        xhr.open('GET',' /date.json');
-        xhr.send();
-        
-        xhr.addEventListener('load', ()=>{
-            const respon = JSON.parse(xhr.responseText);
-            console.log('parse')
+    handlerChange(event){
+        this.setState({
+            [event.target.name] : event.target.value
+        })
+    }
+    handlerSubmit(event){
+        event.preventDefault();
+        const team = this.state.team
+        const counter = this.state.counter;
+        const teamlist = this.state.teamlist
+        const teamStr = team+"";
+        let key = 0;
+        teamlist.forEach((val)=>{
+            if(val.team == teamStr.toLowerCase()){
+                key = 1
+            }
+        })
+        if (team.length > 0 && key == 0){
+            teamlist.push({
+                team: team,
+                counter: counter 
+            })
             this.setState({
-                cours : respon.data,
-                isload : true
+                teamlist : teamlist
             })
-           
-
-        } )
-        
-        
+            console.log(this.state)
+        }else{
+            console.log("Уже есть")
+        }
+       
     }
-    renderCours2(){
-        this.state.cours.forEach((elem)=>{
-            return(
-                console.log(elem.name, elem.price)
-            )
-        })
-    }
-
-    renderCours(name, price){
-        return (
-            <Cours courseName={name} coursePrice={price}/>
-
-        )
-    }
-
-    salesPrice(){
-        let price = this.state.cours;
-        price.forEach((val)=>{
-
-            val.price = val.price - val.price*0.1;
-        })
-        this.setState({cours : price})
-    }
-    
-    Invers(){
-        let price = this.state.cours;
-        price.forEach((val)=>{
-
-            if (val.activ == true) {
-                val.activ = false
-            }else{
-                val.activ = true;
-            }
-            
-        })
-        this.setState({cours : price})
-    }
-
-
-    countChange(){
-    
-            this.setState({num: this.state.num + 1});
-            let arCourse = this.state.cours;
-            arCourse.push({
-                name: "C++",
-                price: 50000,
-                activ: false
-            })
-            this.setState({cours : arCourse})
-            console.log(arCourse)
-            //this.state.cours.push({name: "C++", price : 50000})
-    
-    }
-
-    countChange2(){
-    
-        this.setState({num: this.state.num -1});
-
-    }
-    handlerClick(){
-        console.log('click');
-    }
-    color(){
-        setTimeout(()=>{
-            document.querySelector("body").style.backgroundColor = 'red';
-        }, 300)
-        
-    }
-    render(){
-
-        const a1 = this.state.cours;
-        a1.forEach((val)=>{
-            if (val.reuired != null){
-                val.nameCours = [];
-                this.state.cours.forEach((val2)=>{
-                    if(val.reuired == val2.id){
-                        console.log(val2.name)
-                        val.nameCours.push("Нужен курс: "+val2.name+"a")
-                    }
-                })
-            }
-        })
-        console.log(a1)
-
-        return (
-            <div className='wrapper'>
-                <div className='nordic'><h1>{
-                    !this.state.isload ? 'Загрузка' : 'Загрузка завершина'
-                }</h1></div>
-                <button onClick={()=>{this.handlerClick()}}>Click me!</button>
-                <button onClick={()=>{this.color()}}>Click color</button>
-                <div className='course.box'>{this.renderCours('React', ' 200 руб.')}
-                <Cours courseName={'Веб разработка'} coursePrice={'100 руб.'}/>
-                </div>
-                <Counter num={this.state.num}/>
-               <button onClick = {()=>this.countChange()}>+ Click</button>
-               <button onClick = {()=>this.countChange2()}>- Click</button>
-               <button onClick = {()=>this.salesPrice()}>- Price -</button>
-               <button onClick = {()=>this.Invers()}>- Покажем что скрыто -</button>
-               <div>{this.renderCours2()}</div>
-               <div>
-                    {
-                        this.state.cours.map((item, key)=>
-                           item.activ ? <Cours link={item.id} courseName={item.name} coursePrice={item.price} img={item.img} cursplus={item.nameCours}/> : ''
-                        )
-                    }
-               </div>
-
-            </div>
-        )
-    }
-}
-class Credit extends React.Component{
     render(){
         return(
             <div>
-                <div>{this.props.creditImg}</div>
-                <div>{this.props.creditNumber}</div>
-                <div>{this.props.creditData}</div>
-                <Balanas balans={this.props.creditB}/>
-            </div>
-        )
-    }
-}
-class Balanas extends React.Component{
-    render(){
-        return(
-            <div>{this.props.balans}</div>
-        )
-    }
-}
-class Depozit extends React.Component{
-    render(){
-        return(
-            <div>
-                <div>{this.props.depozitImg}</div>
-                <div>{this.props.depozitNumber}</div>
-                <div>{this.props.depozitData}</div>
-                <Balanas balans={this.props.depozitB}/>
+            <form onSubmit={(event) => this.handlerSubmit(event)}>
+                <p>Команда</p>
+                <input onChange={(event) => this.handlerChange(event)} type="text" name="team" value={this.state.team}/>
+                <p>Вели следующую команду: {this.state.team}</p>
+                <p> Страна</p>
+                <input onChange={(event) => this.handlerChange(event)} type="text" name="counter" value={this.state.counter}/>
+                <p>Вели следующую страну: {this.state.counter}</p>
+                <button type="submit">Click</button>
+            </form>
+            <Team name={this.state.teamlist}/>
             </div>
         )
     }
 }
 
-class BankCard extends React.Component{
-
-
-    render(){
-        return(
-            <div className="Wrapper">
-            <Nordic/>
-            {/* <Credit creditImg={'Credit'} creditNumber={'1234'} creditData={'21.21'} creditB={-222}/>
-            <Depozit depozitImg={'Depozit'} depozitNumber={'4321'} depozitData={'21.21'} depozitB={5646}/>   */}
-            </div>
-        )
-    }
-}
-
-ReactDOM.render(<Nordic/>, document.getElementById('root'));
-
-
+ReactDOM.render(<MyForm/>, document.getElementById('myForm'));
